@@ -26,12 +26,7 @@ int main()
             for (i = 0; i < n; i++)
             {
                 person *p = new person();
-                student *s = new student();
-                teacher *t = new teacher();
-                p->initialize();
-                s->initialize();
-                t->initialize();
-                node_n = new node(p, s, t);
+                node_n = new node(p);
                 list_l->insert_at_end(node_n);
             }
             break;
@@ -41,24 +36,14 @@ int main()
         case 3:
         {
             person *p1 = new person();
-            student *s1 = new student();
-            teacher *t1 = new teacher();
-            p1->initialize();
-            s1->initialize();
-            t1->initialize();
-            node_n = new node(p1, s1, t1);
+            node_n = new node(p1);
             list_l->insert_at_end(node_n);
         }
         break;
         case 4:
         {
             person *p2 = new person();
-            student *s2 = new student();
-            teacher *t2 = new teacher();
-            p2->initialize();
-            s2->initialize();
-            t2->initialize();
-            node_n = new node(p2, s2, t2);
+            node_n = new node(p2);
             list_l->insert_at_first(node_n);
         }
         break;

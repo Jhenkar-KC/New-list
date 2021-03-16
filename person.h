@@ -3,10 +3,6 @@
 #include <iostream>
 class person
 {
-    friend class node;
-    friend class teacher;
-    friend class student;
-
 private:
     char *name;
     char *email;

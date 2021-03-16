@@ -4,9 +4,6 @@
 #include <iostream>
 class teacher : public person
 {
-    friend class node;
-    friend class student;
-
 private:
     char *teacher_id;
     char *salary;
@@ -31,6 +28,7 @@ public:
 
     void initialize()
     {
+        person::initialize();
         printf("\nEnter TEACHER ID\n");
         scanf("%s", this->teacher_id);
         printf("Read Teacher ID : %s\n", this->teacher_id);
@@ -41,6 +39,7 @@ public:
 
     void display()
     {
+        person::display();
         printf("Teacher ID : %s \n", this->teacher_id);
         printf("Salary : %s \n", this->salary);
     }

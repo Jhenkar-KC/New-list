@@ -4,8 +4,6 @@
 #include "person.h"
 class student : public person
 {
-    friend class node;
-
 private:
     char *student_id;
     char *marks;
@@ -29,6 +27,7 @@ public:
     }
     void initialize()
     {
+        person::initialize();
         printf("\nEnter STUDENT ID\n");
         scanf("%s", this->student_id);
         printf("Read Student ID : %s\n", this->student_id);
@@ -39,8 +38,9 @@ public:
 
     void display()
     {
-        printf("Teacher ID : %s \n", this->student_id);
-        printf("Salary : %s \n", this->marks);
+        person::display();
+        printf("Student ID : %s \n", this->student_id);
+        printf("Marks : %s \n", this->marks);
     }
 };
 #endif
