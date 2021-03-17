@@ -1,19 +1,19 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef SINGLE_LINKED_LIST_NODE_H
+#define SINGLE_LINKED_LIST_NODE_H
 #include <stdio.h>
-#include "node.h"
+#include "single_linked_list_node.h"
 #include <iostream>
-class list
+class single_linked_list_list
 {
 public:
-    list()
+    single_linked_list_list()
     {
         this->head = NULL;
     }
-    ~list()
+    ~single_linked_list_list()
     {
-        node *current = this->head;
-        node *next;
+        single_linked_list_node *current = this->head;
+        single_linked_list_node *next;
         while (current != NULL)
         {
             next = current->next;
@@ -22,7 +22,7 @@ public:
         }
         this->head = NULL;
     }
-    node *insert_at_end(node *node_n)
+    single_linked_list_node *insert_at_end(single_linked_list_node *node_n)
     {
         if (this->head == NULL)
         {
@@ -30,7 +30,7 @@ public:
         }
         else
         {
-            node *temp = head;
+            single_linked_list_node *temp = head;
             while (temp->next != NULL)
             {
                 temp = temp->next;
@@ -40,11 +40,11 @@ public:
         return node_n;
     }
 
-    node *insert_at_first(node *node_n)
+    single_linked_list_node *insert_at_first(single_linked_list_node *node_n)
     {
         if (this->head == NULL)
         {
-            printf("It's First node\n");
+            printf("It's First single_linked_list_node\n");
             this->head = node_n;
         }
         else
@@ -57,9 +57,9 @@ public:
 
     void delete_at_last()
     {
-        node *temp;
+        single_linked_list_node *temp;
         temp = this->head;
-        node *previous;
+        single_linked_list_node *previous;
         printf("Delete at last\n");
         if (this->head == NULL)
         {
@@ -72,7 +72,7 @@ public:
         }
         else
         {
-            printf("The nodes are present in the list so moving to last node\n");
+            printf("The single_linked_list_nodes are present in the single_linked_list_list so moving to last single_linked_list_node\n");
             while (temp->next != NULL)
             {
                 previous = temp;
@@ -92,8 +92,8 @@ public:
         }
         else
         {
-            printf("Deleting the First node\n");
-            node *temp;
+            printf("Deleting the First single_linked_list_node\n");
+            single_linked_list_node *temp;
             temp = this->head;
             this->head = this->head->next;
             free(temp);
@@ -104,21 +104,21 @@ public:
     {
         if (this->head == NULL)
         {
-            printf("The list is Empty\n");
+            printf("The single_linked_list_list is Empty\n");
         }
         else
         {
-            node *node;
-            node = this->head;
-            while (node != NULL)
+            single_linked_list_node *node_n;
+            node_n = this->head;
+            while (node_n != NULL)
             {
-                node->display_node();
-                node = node->next;
+                node_n->display_single_linked_list_node();
+                node_n = node_n->next;
             }
         }
     }
 
 private:
-    node *head;
+    single_linked_list_node *head;
 };
 #endif

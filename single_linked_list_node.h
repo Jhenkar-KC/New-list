@@ -1,20 +1,21 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef single_linked_list_node_H
+#define single_linked_list_node_H
 #include <stdio.h>
 #include <iostream>
 #include "teacher.h"
 #include "student.h"
 #include "person.h"
-class node
+class single_linked_list_node
 {
-    friend class list;
+    friend class single_linked_list_list;
+
 public:
-    node(person *node)
+    single_linked_list_node(person *node)
     {
         this->node_ = node;
         this->next = NULL;
     }
-    ~node()
+    ~single_linked_list_node()
     {
         if (this->node_ != NULL)
         {
@@ -28,14 +29,14 @@ public:
         this->next = NULL;
     }
 
-    void display_node()
+    void display_single_linked_list_node()
     {
-        printf("Single list node \n");
+        printf("Single list single_linked_list_node \n");
         this->node_->display();
     }
 
 private:
     person *node_;
-    node *next;
+    single_linked_list_node *next;
 };
 #endif
