@@ -5,7 +5,6 @@
 #include <iostream>
 class list
 {
-
 public:
     list()
     {
@@ -23,37 +22,37 @@ public:
         }
         this->head = NULL;
     }
-    node *insert_at_end(node *node)
+    node *insert_at_end(node *node_n)
     {
         if (this->head == NULL)
         {
-            this->head = node;
+            this->head = node_n;
         }
         else
         {
-            node::node *temp = head;
+            node *temp = head;
             while (temp->next != NULL)
             {
                 temp = temp->next;
             }
-            temp->next = node;
+            temp->next = node_n;
         }
-        return node;
+        return node_n;
     }
 
-    node *insert_at_first(node *node)
+    node *insert_at_first(node *node_n)
     {
         if (this->head == NULL)
         {
-            printf("It's First Node\n");
-            this->head = node;
+            printf("It's First node\n");
+            this->head = node_n;
         }
         else
         {
-            node->next = this->head;
-            this->head = node;
+            node_n->next = this->head;
+            this->head = node_n;
         }
-        return node;
+        return node_n;
     }
 
     void delete_at_last()
@@ -73,7 +72,7 @@ public:
         }
         else
         {
-            printf("The Nodes are present in the list so moving to last node\n");
+            printf("The nodes are present in the list so moving to last node\n");
             while (temp->next != NULL)
             {
                 previous = temp;
@@ -93,7 +92,7 @@ public:
         }
         else
         {
-            printf("Deleting the First Node\n");
+            printf("Deleting the First node\n");
             node *temp;
             temp = this->head;
             this->head = this->head->next;
@@ -105,7 +104,7 @@ public:
     {
         if (this->head == NULL)
         {
-            printf("The List is Empty\n");
+            printf("The list is Empty\n");
         }
         else
         {

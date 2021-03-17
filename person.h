@@ -52,7 +52,7 @@ public:
         scanf("%s", this->address);
         printf("\nRead Person ADDRESS :%s\n", this->address);
     }
-    void display()
+    virtual void display()
     {
         printf("Name : %s \n", this->name);
         printf("E-mail : %s \n", this->email);

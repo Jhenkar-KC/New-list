@@ -8,35 +8,34 @@
 class node
 {
     friend class list;
-
 public:
     node(person *node)
     {
-        this->person_ = node;
+        this->node_ = node;
         this->next = NULL;
     }
     ~node()
     {
-        if (this->person_ != NULL)
+        if (this->node_ != NULL)
         {
-            free(this->person_);
-            this->person_ = NULL;
+            free(this->node_);
+            this->node_ = NULL;
         }
     }
     void initialize()
     {
-        this->person_->initialize();
+        this->node_->initialize();
         this->next = NULL;
     }
 
     void display_node()
     {
         printf("Single list node \n");
-        this->person_->display();
+        this->node_->display();
     }
 
 private:
-    person *person_;
+    person *node_;
     node *next;
 };
 #endif
