@@ -15,6 +15,13 @@ public:
     }
     ~double_linked_list_list()
     {
+        double_linked_list_node *temp;
+        while (head != NULL)
+        {
+            temp = head;
+            head = head->next;
+            free(temp);
+        }
     }
 
     double_linked_list_node *insert_at_end(double_linked_list_node *d_node)
@@ -109,5 +116,4 @@ public:
         }
     }
 };
-
 #endif

@@ -6,23 +6,19 @@ class student : public person
 {
 private:
     char *student_id;
-    char *marks;
+    int marks;
 
 public:
     student()
     {
         this->student_id = new char[20];
-        this->marks = new char[5];
+        int marks = int();
     }
     ~student()
     {
         if (this->student_id != NULL)
         {
             free(this->student_id);
-        }
-        if (this->marks != NULL)
-        {
-            free(this->marks);
         }
     }
     void initialize()
@@ -32,15 +28,15 @@ public:
         scanf("%s", this->student_id);
         printf("Read Student ID : %s\n", this->student_id);
         printf("\nEnter MARKS\n");
-        scanf("%s", this->marks);
-        printf("Read Marks : %s\n", this->marks);
+        scanf("%d", &marks);
+        printf("Read Marks : %d\n", this->marks);
     }
 
     void display()
     {
         person::display();
         printf("Student ID : %s \n", this->student_id);
-        printf("Marks : %s \n", this->marks);
+        printf("Marks : %d \n", this->marks);
     }
 };
 #endif

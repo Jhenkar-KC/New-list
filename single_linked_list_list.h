@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "single_linked_list_node.h"
 #include <iostream>
+#include <stdlib.h>
+#include <cstring>
 class single_linked_list_list
 {
 public:
@@ -105,6 +107,53 @@ public:
         if (this->head == NULL)
         {
             printf("The single_linked_list_list is Empty\n");
+        }
+        else
+        {
+            single_linked_list_node *node_n;
+            node_n = this->head;
+            while (node_n != NULL)
+            {
+                node_n->display_single_linked_list_node();
+                node_n = node_n->next;
+            }
+        }
+    }
+
+    single_linked_list_node *sorted_name(single_linked_list_node *node_n)
+    {
+        single_linked_list_node *previous, *current;
+
+        if (this->head == NULL)
+        {
+            this->head = node_n;
+        }
+        else if (strcmp(this->head->node_->getName(), node_n->node_->getName()) >= 0)
+        {
+
+            node_n->next = this->head;
+            this->head = node_n;
+        }
+        else
+        {
+            previous = this->head;
+            current = this->head->next;
+
+            while ((current != NULL) && strcmp(current->node_->getName(), node_n->node_->getName()) < 0)
+            {
+                previous = current;
+                current = current->next;
+            }
+            node_n->next = previous->next;
+            previous->next = node_n;
+        }
+        return node_n;
+    }
+    void display_sorted_name()
+    {
+        if (this->head == NULL)
+        {
+            printf("The single linked list list is Empty\n");
         }
         else
         {
