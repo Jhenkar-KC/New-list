@@ -1,0 +1,44 @@
+    void *File_Write(node *head)
+    {
+        FILE *file;
+        file = fopen("data.txt", "a");
+        if (file == NULL)
+        {
+            printf("error");
+        }
+        else
+        {
+            while (head != NULL)
+            {
+                fprintf(file, "%s\n", head->name);
+                fprintf(file, "%s\n", head->email);
+                fprintf(file, "%s\n", head->city);
+                fprintf(file, "%s\n", head->mobile);
+                head = head->next;
+            }
+        }
+        fclose(file);
+        return head;
+    }
+
+    /* To read the contents from the file */
+    single_linked_list_node *File_Read(single_linked_list_node *node_n)
+    {
+        FILE *file = fopen("data.txt", "r");
+        if (file == NULL)
+        {
+            printf("There is Error in Opening of a file\n");
+        }
+        while (!feof(file))
+        {
+            single_linked_list_node *newnode = (single_linked_list_node *)malloc(sizeof(single_linked_list_node));
+            fscanf(file, "%s\n", newnode->name);
+            fscanf(file, "%s\n", newnode->email);
+            fscanf(file, "%s\n", newnode->city);
+            fscanf(file, "%s\n", newnode->mobile);
+            newnode->next = NULL;
+            head = insert(head, newnode);
+        }
+        fclose(file);
+        return head;
+    }

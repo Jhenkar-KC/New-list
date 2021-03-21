@@ -128,9 +128,8 @@ public:
         {
             this->head = node_n;
         }
-        else if (strcmp(this->head->node_->getName(), node_n->node_->getName()) >= 0)
+        else if (strcmp(this->head->node_->getName(), node_n->node_->getName()) >= 0) /*Insert at the head*/
         {
-
             node_n->next = this->head;
             this->head = node_n;
         }
@@ -166,7 +165,6 @@ public:
             }
         }
     }
-
 private:
     single_linked_list_node *head;
 };
