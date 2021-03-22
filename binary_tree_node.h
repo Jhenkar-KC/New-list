@@ -1,17 +1,13 @@
-#ifndef BINARY_TREE_dataH
-#define BINARY_TREE_dataH
+#ifndef BINARY_TREE_NODE_H
+#define BINARY_TREE_NODE_H
+#include <stdio.h>
 #include <iostream>
-#include "person.h"
 #include "teacher.h"
 #include "student.h"
-class binary_tree_node : public person
+#include "person.h"
+class binary_tree_node
 {
     friend class binary_tree;
-
-private:
-    person *data;
-    binary_tree_node *left;
-    binary_tree_node *right;
 
 public:
     binary_tree_node(person *node)
@@ -28,17 +24,22 @@ public:
             this->data = NULL;
         }
     }
-
     void initialize()
     {
         this->data->initialize();
         this->left = NULL;
         this->right = NULL;
     }
-    void display_node()
+
+    void display_binary_tree_node()
     {
-        printf("Binary Tree\n");
+        printf("Single list binary_tree_node \n");
         this->data->display();
     }
+
+private:
+    person *data;
+    binary_tree_node *left;
+    binary_tree_node *right;
 };
 #endif

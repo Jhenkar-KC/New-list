@@ -23,26 +23,19 @@ public:
         }
     }
 
-    binary_tree_node *insert(tree->data->getName(), binary_tree_node *node)
+    binary_tree_node *insert(person *getName(), binary_tree_node *node)
     {
+
         if (node == NULL)
         {
-            node = this->tree->data->getName();
-            node->left = NULL;
-            node->right = NULL;
+            node->data = this->tree->data->getName();
+            node->left = node->right = NULL;
         }
-        else
-        {
-            if (this->tree->data->getName() < node->data)
-            {
-                insert(node->left, this->tree->data->getName());
-            }
-            else if (this->tree->data->getName()->data > node->data)
-            {
-                insert(node->right, this->tree->data->getName());
-            }
-        }
-        return 0;
+        else if ((this->tree->data->getName()) < (node->data))
+            node->left = insert(tree->data->getName(), node->left);
+        else if ((this->tree->data->getName()) > (node->data))
+            node->right = insert(tree->data->getName(), node->right);
+        return node;
     }
 
     void display()
@@ -57,8 +50,35 @@ public:
             node = this->tree;
             while (node != NULL)
             {
-                node->display_node();
+                node->display_binary_tree_node();
             }
+        }
+    }
+    void *inorder(binary_tree_node *node)
+    {
+        if (node != node)
+        {
+            inorder(node->left);
+            node->display_binary_tree_node();
+            inorder(node->right);
+        }
+    }
+    void *preorder(binary_tree_node *node)
+    {
+        if (node != node)
+        {
+            node->display_binary_tree_node();
+            preorder(node->left);
+            preorder(node->left);
+        }
+    }
+    void *postorder(binary_tree_node *node)
+    {
+        if (node != node)
+        {
+            postorder(node->left);
+            postorder(node->right);
+            node->display_binary_tree_node();
         }
     }
 };
