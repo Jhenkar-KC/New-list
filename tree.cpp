@@ -21,17 +21,39 @@ int main()
         {
         case 1:
         {
-            teacher *s = new teacher();
-            s->initialize();
-            btreenode_n = new binary_tree_node(s);
-            btree->insert(s->getName(), btreenode_n);
+            printf("\nHow many students information has to be entered\n");
+            scanf("%d", &n);
+            for (i = 0; i < n; i++)
+            {
+                teacher *s = new teacher();
+                s->initialize();
+                btreenode_n = new binary_tree_node(s);
+                btree->insert(btreenode_n);
+            }
         }
         break;
         case 2:
         {
             btree->display();
         }
-        case 7:
+        break;
+        case 3:
+        {
+            btree->inorder(btreenode_n);
+        }
+        break;
+        case 4:
+        {
+            btree->preorder(btreenode_n);
+        }
+        break;
+        case 5:
+        {
+
+            btree->postorder(btreenode_n);
+        }
+        break;
+        case 6:
             exit(0);
             break;
         default:

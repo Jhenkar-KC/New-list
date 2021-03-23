@@ -59,7 +59,7 @@ public:
         printf("Phone Number : %s \n", this->phone);
         printf("Address : %s \n", this->address);
     }
-    char *getName()
+    virtual char *getName()
     {
         return this->name;
     }
