@@ -42,3 +42,111 @@
         fclose(file);
         return head;
     }
+
+    
+    binary_tree_node *delete_tree_node(person *getName(), binary_tree_node *node_data)
+    {
+        binary_tree_node *temp;
+        if (node_data == NULL)
+        {
+            printf("No Elements Found \n");
+        }
+        else if (node_data->getName() < node_data->data->getName())
+        {
+            node_data->left = delete_tree_node(node_data->left, node_data);
+        }
+        else if (data->getName() > node_data->data->getName())
+        {
+            node_data->right = delete_tree_node(node_data->right, node_data);
+        }
+        else
+        {
+            if (node_data->right && node_data->left)
+            {
+                temp = Min_node(node_data->right);
+                node_data->data->getName() = temp->data->getName();
+                node_data->left = delete_tree_node(node_data->right, temp->data->getName());
+            }
+            else
+            {
+                temp = node_data;
+                if (node_data->left == NULL)
+                {
+                    node_data = node_data->right;
+                }
+                else if (node_data->right == NULL)
+                {
+                    node_data = node_data->left;
+                }
+                free(temp);
+            }
+        }
+        return node_data;
+    }
+};
+
+
+    void insertNode(binary_tree_node *root, binary_tree_node *node)
+    {
+        if (this->tree == NULL)
+        {
+            this->tree = node;
+            return;
+        }
+
+        if (root->data->getName() < node->data->getName())
+        {
+            if (root->left == NULL)
+            {
+                root->left = node;
+                return;
+            }
+            insertNode(root->left, node);
+            return;
+        }
+
+        if (root->data->getName() > data->data->getName())
+        {
+            if (root->right == NULL)
+            {
+                root->right = node;
+                return;
+            }
+            insertNode(root->right, node);
+        }
+    }
+
+
+
+
+
+    
+    void insertNode(binary_tree_node *root, binary_tree_node *node)
+    {
+        if (this->tree == NULL)
+        {
+            this->tree = node;
+            return;
+        }
+
+        if (root->data->getName() < node->data->getName())
+        {
+            if (root->left == NULL)
+            {
+                root->left = node;
+                return;
+            }
+            insertNode(root->left, node);
+            return;
+        }
+
+        if (root->data->getName() > node->data->getName())
+        {
+            if (root->right == NULL)
+            {
+                root->right = node;
+                return;
+            }
+            insertNode(root->right, node);
+        }
+    }

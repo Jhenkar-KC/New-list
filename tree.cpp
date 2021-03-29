@@ -14,7 +14,7 @@ int main()
     printf("\nINFORMATION\n");
     do
     {
-        printf(" \n 1.Tree \n 2.Display \n 3.Display inorder tree \n 4.Display preorder tree \n 5.Display postorder tree \n 6.Exit \n");
+        printf(" \n 1.Tree \n 2.Search \n 3.Display inorder tree \n 4.Display preorder tree \n 5.Display postorder tree \n 6.Exit \n");
         printf("\nEnter your choice \n");
         scanf("%d", &choice);
         switch (choice)
@@ -34,23 +34,26 @@ int main()
         break;
         case 2:
         {
-            btree->display();
+            printf("\nEnter the Key to be Searched in Tree \n");
+            person *n = new person;
+            n->name();
+            btree->search(n);
         }
         break;
         case 3:
         {
-            btree->inorder(btreenode_n);
+            btree->inorder_node();
         }
         break;
         case 4:
         {
-            btree->preorder(btreenode_n);
+            btree->preorder_node();
         }
         break;
         case 5:
         {
 
-            btree->postorder(btreenode_n);
+            btree->postorder_node();
         }
         break;
         case 6:

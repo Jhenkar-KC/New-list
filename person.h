@@ -3,6 +3,7 @@
 #include <iostream>
 class person
 {
+
 private:
     char *name;
     char *email;
@@ -62,6 +63,12 @@ public:
     virtual char *getName()
     {
         return this->name;
+    }
+    void name()
+    {
+        printf("\nEnter the NAME OF Person\n");
+        scanf("%s", this->name);
+        printf("\nRead Person NAME :%s\n", this->name);
     }
 };
 #endif
