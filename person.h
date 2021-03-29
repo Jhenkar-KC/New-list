@@ -64,7 +64,7 @@ public:
     {
         return this->name;
     }
-    void name()
+    virtual void key_name()
     {
         printf("\nEnter the NAME OF Person\n");
         scanf("%s", this->name);

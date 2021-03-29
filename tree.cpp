@@ -36,7 +36,7 @@ int main()
         {
             printf("\nEnter the Key to be Searched in Tree \n");
             person *n = new person;
-            n->name();
+            n->key_name();
             btree->search(n);
         }
         break;

@@ -94,6 +94,39 @@ If number > root->data
         }
     }
 
+    binary_tree_node *DeleteNodeInBST(binary_tree_node *root, binary_tree_node *node)
+    {
+        if (tree == NULL)
+            return tree;
+        if (root->data->getName() <= node->data->getName())
+            root->left = DeleteNodeInBST(root->left, node);
+        else if (root->data->getName() > node->data->getName())
+            root->right = DeleteNodeInBST(root->right, node);
+        else
+        {
+            //No child
+            if (root->right == NULL && root->left == NULL)
+            {
+                delete root;
+                root = NULL;
+            }
+            //One child
+            else if (root->right == NULL)
+            {
+                binary_tree_node *temp = root;
+                root = root->left;
+                delete temp;
+            }
+            else if (root->left == NULL)
+            {
+                binary_tree_node *temp = root;
+                root = root->right;
+                delete temp;
+            }
+        }
+        return root;
+    }
+
     void inorder(binary_tree_node *node)
     {
         if (node != NULL)
@@ -135,21 +168,6 @@ If number > root->data
     void postorder_node()
     {
         this->postorder(this->tree);
-    }
-    binary_tree_node *Min_node(binary_tree_node *node)
-    {
-        if (node == NULL)
-        {
-            return NULL;
-        }
-        if (node->left)
-        {
-            return Min_node(node->left);
-        }
-        else
-        {
-            return node;
-        }
     }
 };
 #endif
