@@ -5,6 +5,7 @@
 #include "binary_tree_node.h"
 #include "teacher.h"
 #include "student.h"
+#include "string.h"
 class binary_tree
 {
 private:
@@ -78,30 +79,41 @@ If number > root->data
 
     void search(char *name)
     {
-        this->search_node(name, this->tree);
+        this->search_node(this->tree, name);
     }
-
-    binary_tree_node *search_node(char *name, binary_tree_node *root)
+    binary_tree_node *search_node(binary_tree_node *root, char *name)
     {
-        if (tree != NULL)
+        if (root != NULL)
         {
-            if (root->data->getName() == name)
+            if (strcmp(root->data->getName(), name) == 0)
+            {
                 return root;
-            if (root->data->getName() < name)
-                return search_node(name, root->left);
-            else
-                return search_node(name, root->right);
+            }
+
+            if (strcmp(root->data->getName(), name) < 0)
+            {
+                return search_node(root->left, name);
+            }
+            if (strcmp(root->data->getName(), name) > 0)
+            {
+                return search_node(root->right, name);
+            }
         }
     }
 
-    binary_tree_node *DeleteNodeInBST(binary_tree_node *root, binary_tree_node *node)
+    void delete_node(char *name)
     {
-        if (tree == NULL)
-            return tree;
-        if (root->data->getName() <= node->data->getName())
-            root->left = DeleteNodeInBST(root->left, node);
-        else if (root->data->getName() > node->data->getName())
-            root->right = DeleteNodeInBST(root->right, node);
+        this->DeleteNodeInBST(this->tree, name);
+    }
+
+    binary_tree_node *DeleteNodeInBST(binary_tree_node *root, char *name)
+    {
+        if (root == NULL)
+            return root;
+        if (strcmp(root->data->getName(), name) <= 0)
+            return DeleteNodeInBST(root->left, name);
+        else if (strcmp(root->data->getName(), name) > 0)
+            return DeleteNodeInBST(root->right, name);
         else
         {
             //No child
@@ -124,7 +136,6 @@ If number > root->data
                 delete temp;
             }
         }
-        return root;
     }
 
     void inorder(binary_tree_node *node)

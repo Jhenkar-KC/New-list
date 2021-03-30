@@ -12,7 +12,7 @@ public:
     teacher()
     {
         this->teacher_id = new char[10];
-        int salary = int ();
+        int salary = int();
     }
     ~teacher()
     {
