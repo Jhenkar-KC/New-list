@@ -35,10 +35,20 @@ int main()
         case 2:
         {
             char *name;
+            binary_tree_node *node;
+
             name = new char[1000];
             printf("Enter the Key/Name to be Searched in Tree \n");
             scanf("%s", name);
-            btree->search(name);
+
+            node = btree->search(name);
+            if (node == NULL)
+            {
+                printf("Node not found for name %s\n", name);
+                continue;
+            }
+            printf("Found node\n");
+            node->display_binary_tree_node();
         }
         break;
         case 3:
@@ -59,9 +69,9 @@ int main()
         break;
         case 6:
         {
-
             char *name;
-            printf("Enter the Key/Name to be Searched in Tree \n");
+            binary_tree_node *node;
+            printf("Enter the Key/Name to be Deleted in Tree \n");
             scanf("%s", name);
             btree->delete_node(name);
         }

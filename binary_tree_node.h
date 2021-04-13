@@ -15,15 +15,17 @@ public:
         this->data = node;
         this->left = NULL;
         this->right = NULL;
+        this->height = NULL;
     }
-    ~binary_tree_node()
+    /*~binary_tree_node()
     {
         if (this->data != NULL)
         {
             free(this->data);
-            this->data = NULL;
+            free(this->left);
+            free(this->right);
         }
-    }
+    }*/
     void initialize()
     {
         this->data->initialize();
@@ -41,5 +43,6 @@ private:
     person *data;
     binary_tree_node *left;
     binary_tree_node *right;
+    binary_tree_node *height;
 };
 #endif

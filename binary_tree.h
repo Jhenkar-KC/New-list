@@ -29,57 +29,41 @@ public:
         this->insertNode(this->tree, node);
     }
 
-    binary_tree_node *insertNode(binary_tree_node *root, binary_tree_node *node)
+    void insertNode(binary_tree_node *root, binary_tree_node *node)
     {
         if (this->tree == NULL)
         {
             this->tree = node;
-            return node;
+            return;
         }
-        else
+
+        if (strcmp(root->data->getName(), node->data->getName()) < 0)
         {
-            if (root->data->getName() == node->data->getName())
+            if (root->left == NULL)
             {
-                printf("Duplicate Entry");
+                root->left = node;
+                return;
             }
-            else if (root->data->getName() < node->data->getName())
-            {
-                if (root->left == NULL)
-                {
-                    root->left = node;
-                    return root;
-                }
-                root->left = insertNode(root->left, node);
-                return root;
-            }
-
-            else if (root->data->getName() > node->data->getName())
-            {
-
-                if (root->right == NULL)
-                {
-                    root->right = node;
-                    return root;
-                }
-                root->right = insertNode(root->right, node);
-                return root;
-            }
+            insertNode(root->left, node);
+            return;
         }
-        return root;
+        if (strcmp(root->data->getName(), node->data->getName()) > 0)
+
+        {
+            if (root->right == NULL)
+            {
+                root->right = node;
+                return;
+            }
+            insertNode(root->right, node);
+            return;
+        }
     }
 
-    /*If root == NULL 
-    return NULL;
-If number == root->data 
-    return root->data;
-If number < root->data 
-    return search(root->left)
-If number > root->data 
-    return search(root->right)*/
-
-    void search(char *name)
+    binary_tree_node *
+    search(char *name)
     {
-        this->search_node(this->tree, name);
+        return this->search_node(this->tree, name);
     }
     binary_tree_node *search_node(binary_tree_node *root, char *name)
     {
@@ -89,7 +73,6 @@ If number > root->data
             {
                 return root;
             }
-
             if (strcmp(root->data->getName(), name) < 0)
             {
                 return search_node(root->left, name);
@@ -99,43 +82,61 @@ If number > root->data
                 return search_node(root->right, name);
             }
         }
+        return NULL;
     }
 
-    void delete_node(char *name)
+    void *delete_node(char *name)
     {
-        this->DeleteNodeInBST(this->tree, name);
+        return this->DeleteNodeInBST(this->tree, name);
     }
 
     binary_tree_node *DeleteNodeInBST(binary_tree_node *root, char *name)
     {
         if (root == NULL)
             return root;
-        if (strcmp(root->data->getName(), name) <= 0)
-            return DeleteNodeInBST(root->left, name);
+        else if (strcmp(root->data->getName(), name) < 0)
+            root->left = DeleteNodeInBST(root->left, name);
         else if (strcmp(root->data->getName(), name) > 0)
-            return DeleteNodeInBST(root->right, name);
+            root->right = DeleteNodeInBST(root->right, name);
         else
         {
-            //No child
-            if (root->right == NULL && root->left == NULL)
+
+            // Case 1:  No child
+            if (root->left == NULL && root->right == NULL)
             {
                 delete root;
                 root = NULL;
             }
-            //One child
-            else if (root->right == NULL)
-            {
-                binary_tree_node *temp = root;
-                root = root->left;
-                delete temp;
-            }
+            //Case 2: One child
             else if (root->left == NULL)
             {
                 binary_tree_node *temp = root;
                 root = root->right;
                 delete temp;
             }
+            else if (root->right == NULL)
+            {
+                binary_tree_node *temp = root;
+                root = root->left;
+                delete temp;
+            }
+            // case 3: 2 children
+            else
+            {
+                binary_tree_node *temp = FindMin(root->right);
+                root = temp;
+                root->right = DeleteNodeInBST(root->right, name);
+            }
         }
+        return;
+    }
+
+    binary_tree_node *
+    FindMin(binary_tree_node *root)
+    {
+        while (root->left != NULL)
+            root = root->left;
+        return root;
     }
 
     void inorder(binary_tree_node *node)
@@ -179,6 +180,54 @@ If number > root->data
     void postorder_node()
     {
         this->postorder(this->tree);
+    }
+
+    /* This function traverse the skewed binary tree and
+   stores its nodes pointers in vector nodes[] */
+    void storeBSTNodes(binary_tree_node *root, vector<binary_tree_node *> &node)
+    {
+        // Base case
+        if (root == NULL)
+            return;
+
+        // Store nodes in Inorder (which is sorted
+        // order for BST)
+        storeBSTNodes(root->left, node);
+        node.push_back(root);
+        storeBSTNodes(root->right, node);
+    }
+
+    /* Recursive function to construct binary tree */
+    binary_tree_node *buildTreeUtil(vector<binary_tree_node *> &node, int start,
+                                    int end)
+    {
+        // base case
+        if (start > end)
+            return NULL;
+
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        binary_tree_node *root = node[mid];
+
+        /* Using index in Inorder traversal, construct
+       left and right subtress */
+        root->left = buildTreeUtil(node, start, mid - 1);
+        root->right = buildTreeUtil(node, mid + 1, end);
+
+        return root;
+    }
+
+    // This functions converts an unbalanced BST to
+    // a balanced BST
+    binary_tree_node *buildTree(binary_tree_node *root)
+    {
+        // Store nodes of given BST in sorted order
+        vector<binary_tree_node *> node;
+        storeBSTNodes(root, node);
+
+        // Constucts BST from nodes[]
+        int n = node.size();
+        return buildTreeUtil(nodes, 0, n - 1);
     }
 };
 #endif
